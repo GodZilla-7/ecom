@@ -1,8 +1,13 @@
 import React from "react";
+import Heading from "./Heading";
+import Divider from "./Divider";
 function Catagory(){
     return(
+    <div className="mb-7">
+      <Heading/>
+      <Divider/>
         <div className="flex flex-col items-center justify-between">
-               <h1 className="text-[rgb(95,15,42)] text-lg p-4 pb-8">Shop by category</h1>
+      
 <div className="carousel rounded-box flex items-center justify-around gap-4">
  
   <div className="carousel-item">
@@ -27,6 +32,7 @@ function Catagory(){
   </div>
 
 </div>
+        </div>
         </div>
     )
 }

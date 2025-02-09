@@ -5,6 +5,7 @@ import Hero from './assets/Hero'
 import Bottomnav from './assets/Dock'
 import Catagory from './assets/Catagory'
 import Occasion from './assets/Occasion'
+import Divider from './assets/Divider'
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
       <Bottomnav/>
       <Catagory/>
       <Occasion/>
+      
     </>
   )
 }
