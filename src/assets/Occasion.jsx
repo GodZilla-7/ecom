@@ -1,11 +1,14 @@
 import React from "react";
 import Heading from "./Heading";
 import Divider from "./Divider";
+import ResponsiveTabs from "./Responsivetabs";
 function Occasion(){
   return(
     <>
+    
       <Heading/>
       <Divider/>
+      <ResponsiveTabs/>
         <div className="flex flex-col items-center justify-between">
       
 <div className="carousel rounded-box flex items-center justify-around gap-4">
