@@ -8,3 +8,11 @@
     transform: translateX(-100%);
   }
 }
+.mySwiper .swiper-pagination-bullet {
+  background-color: white; /* Change the bullet color to white */
+  opacity: 0.5; /* Optional: Adjust opacity for a subtle look */
+}
+
+.mySwiper .swiper-pagination-bullet-active {
+  opacity: 1; /* Make the active bullet fully visible */
+}

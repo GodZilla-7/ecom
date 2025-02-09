@@ -3,7 +3,7 @@ import React from "react";
 function Navbar(){
     return(
       <div className="fixed top-0 left-0 z-50 w-full">
-      <div className="relative overflow-hidden bg-green-700 text-white">
+      <div className="relative overflow-hidden bg-[rgb(95,15,42)] text-white">
   <div className="flex justify-between animate-[marquee_10s_linear_infinite] whitespace-nowrap text-sm">
     <span>Limited Time Offer!</span>
     <span>FREE Pouch on first order above ₹999</span>
@@ -16,7 +16,7 @@ function Navbar(){
 
   <div className="navbar-start">
     <img className="h-10" src="/image.png" />
-    <a className="text-green-700 ">SHOPBRAZE</a>
+    <a className="text-[rgb(95,15,42)] font-semibold">SHOPBRAZE</a>
   </div>
 
   <div className="navbar-end">
