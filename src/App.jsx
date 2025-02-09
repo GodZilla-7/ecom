@@ -1,6 +1,6 @@
 import React from 'react'
 import './App.css'
-import Navbar from './assets/navbar'
+import Navbar from './assets/Navbar'
 import Hero from './assets/Hero'
 import Bottomnav from './assets/Dock'
 import Catagory from './assets/Catagory'
