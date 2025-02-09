@@ -15,10 +15,10 @@ function Box() {
           className="bg-[rgb(246,242,242)] border-b-2 border-[rgb(217,184,183)] w-28 sm:w-48 flex items-center justify-center p-1 sm:p-2 rounded-md"
         >
           <div>
-            <h2 className="text-[6px] sm:text-[10px] font-semibold">
+            <h2 className="text-[10px] sm:text-[14px] font-semibold">
               {card.header}
             </h2>
-            <p className="text-[4px] sm:text-[8px]">{card.subtext}</p>
+            <p className="text-[8px] sm:text-[12px]">{card.subtext}</p>
           </div>
         </div>
       ))}
