@@ -9,6 +9,7 @@ import Why from './assets/Why'
 import Bestsellers from './assets/Bestsellers'
 import Printtype from './assets/Printtype'
 import Fabric from './assets/Fabric'
+import FAQ from './assets/Faq'
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
       <Printtype img="/p1.webp"/>
       <Printtype img="/p2.webp"/>
       <Printtype img="/p3.webp"/>
+      <FAQ/>
     </>
   )
 }
