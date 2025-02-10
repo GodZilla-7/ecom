@@ -2,11 +2,11 @@ import React from "react";
 import Heading from "./Heading";
 import Divider from "./Divider";
 import ResponsiveTabs from "./Responsivetabs";
-function Occasion(){
+function Fabric(){
   return(
     <>
     
-      <Heading Heading="Shop By Occasion"/>
+      <Heading Heading="Shop By Fabric"/>
       <Divider/>
       <ResponsiveTabs/>
         <div className="flex flex-col items-center justify-between">
@@ -51,4 +51,4 @@ View All
         </>
     )
 }
-export default Occasion;
+export default Fabric;

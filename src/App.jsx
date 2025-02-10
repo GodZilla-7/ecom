@@ -5,7 +5,10 @@ import Hero from './assets/Hero'
 import Bottomnav from './assets/Dock'
 import Catagory from './assets/Catagory'
 import Occasion from './assets/Occasion'
-import Divider from './assets/Divider'
+import Why from './assets/Why'
+import Bestsellers from './assets/Bestsellers'
+import Printtype from './assets/Printtype'
+import Fabric from './assets/Fabric'
 function App() {
   return (
     <>
@@ -14,9 +17,14 @@ function App() {
       <Bottomnav/>
       <Catagory/>
       <Occasion/>
-      
+      <Fabric/>
+      <Why/>
+      <Bestsellers/>
+      <Printtype img="/p1.webp"/>
+      <Printtype img="/p2.webp"/>
+      <Printtype img="/p3.webp"/>
     </>
   )
 }
 
-export default App
+export default App;

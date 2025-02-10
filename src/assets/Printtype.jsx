@@ -1,13 +1,12 @@
 import React from "react";
-import Heading from "./Heading";
-import Divider from "./Divider";
-function Catagory(){
-    return(
-    <div className="mb-7">
-      <Heading Heading="Shop by Category" />
-      <Divider/>
-        <div className="flex flex-col items-center justify-between">
-      
+
+function Printtype(props){
+  return(
+    <>
+    
+
+        <div className="flex flex-col items-center justify-between mt-12">
+        <img className="mb-4" src={props.img}/>
 <div className="carousel rounded-box flex items-center justify-around gap-4">
  
   <div className="carousel-item">
@@ -32,8 +31,9 @@ function Catagory(){
   </div>
 
 </div>
+
         </div>
-        </div>
+        </>
     )
 }
-export default Catagory;
+export default Printtype;
