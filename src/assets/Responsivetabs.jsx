@@ -10,16 +10,18 @@ function ResponsiveTabs(props) {
   return (
     <div className="w-full mb-4 p-1">
       {/* Tabs */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between border-b border-gray-300">
         <button
           className={`tab text-xs ${
             activeTab === 1
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
-          } ml-0 sm:ml-4`}
+          }`}
           style={{
             color: activeTab === 1 ? "rgb(139,69,19)" : "rgb(120,120,120)",
-          }} // Inline style for text color
+            flex: 1,
+            textAlign: "center",
+          }} // Inline style for text color and alignment
           onClick={() => handleTabClick(1)}
         >
           {props.t1}
@@ -29,10 +31,12 @@ function ResponsiveTabs(props) {
             activeTab === 2
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
-          } mx-2 sm:mx-4`}
+          }`}
           style={{
             color: activeTab === 2 ? "rgb(139,69,19)" : "rgb(120,120,120)",
-          }} // Inline style for text color
+            flex: 1,
+            textAlign: "center",
+          }} // Inline style for text color and alignment
           onClick={() => handleTabClick(2)}
         >
           {props.t2}
@@ -42,10 +46,12 @@ function ResponsiveTabs(props) {
             activeTab === 3
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
-          } mx-2 sm:mx-4`}
+          }`}
           style={{
             color: activeTab === 3 ? "rgb(139,69,19)" : "rgb(120,120,120)",
-          }} // Inline style for text color
+            flex: 1,
+            textAlign: "center",
+          }} // Inline style for text color and alignment
           onClick={() => handleTabClick(3)}
         >
           {props.t3}
