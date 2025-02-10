@@ -1,30 +1,36 @@
 import React from 'react'
-import './App.css'
-import Navbar from './assets/Navbar'
-import Hero from './assets/Hero'
-import Bottomnav from './assets/Dock'
-import Catagory from './assets/Catagory'
-import Occasion from './assets/Occasion'
-import Why from './assets/Why'
-import Bestsellers from './assets/Bestsellers'
-import Printtype from './assets/Printtype'
-import Fabric from './assets/Fabric'
-import FAQ from './assets/Faq'
+import Home from './Home';
+import Dock from './assets/Dock';
+import Help from './Help';
+import Orders from './Orders';
+import {createBrowserRouter, RouterProvider } from "react-router-dom";
+let router = createBrowserRouter([
+  {
+    path: "/",
+    element:<div>
+      <Home/>
+       <Dock/>
+    </div>
+  },
+  {
+    path: "/help",
+    element:<div>
+          <Help/>
+          <Dock/>
+        </div>
+  },
+  {
+    path: "/orders",
+    element:<div>
+         <Orders/>
+          <Dock/>
+        </div>
+  },
+]);
 function App() {
   return (
     <>
-      <Navbar/>
-      <Hero/>
-      <Bottomnav/>
-      <Catagory/>
-      <Occasion/>
-      <Fabric/>
-      <Why/>
-      <Bestsellers/>
-      <Printtype img="/p1.webp"/>
-      <Printtype img="/p2.webp"/>
-      <Printtype img="/p3.webp"/>
-      <FAQ/>
+      <RouterProvider router={router}/>
     </>
   )
 }

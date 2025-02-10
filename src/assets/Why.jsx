@@ -21,8 +21,10 @@ function Why(){
            <Cards img="r3.webp"/>
           </div>
          
-     
-         
+
+
+
+
         </div>
         </div>
         </>

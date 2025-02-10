@@ -11,7 +11,12 @@ function FAQ() {
     { question: "How do I exchange my order?", answer: "Exchanges are allowed within 30 days of purchase. Contact customer support for details." },
     { question: "What is the refund policy?", answer: "Refunds are processed within 7-10 business days after the product is received." },
     { question: "I want to track my order?", answer: "You can track your order using the tracking ID sent to your email after shipping." },
+    { question: "What is the fabric used for clothes?", answer: "Our clothes are made from high-quality cotton, polyester, and other durable fabrics." },
+    { question: "How do I find my correct fit?", answer: "You can use our size guide available on each product page for assistance." },
+    { question: "Does the cotton fabric shrink/bleed color after washing?", answer: "Our cotton fabrics are pre-shrunk and color-tested to prevent bleeding." },
+    { question: "I want to see more designs?", answer: "You can explore our full catalog on the 'New Arrivals' section of our website." },
   ];
+  
 
   const toggleFAQ = (index) => {
     setOpenIndex(index === openIndex ? null : index);
