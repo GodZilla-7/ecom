@@ -8,7 +8,7 @@ function Fabric(){
     
       <Heading Heading="Shop By Fabric"/>
       <Divider/>
-      <ResponsiveTabs/>
+      <ResponsiveTabs t1="SOFT COTTON" t2="LINEN COTTON" t3="HANDLOOM COTTON"/>
         <div className="flex flex-col items-center justify-between">
       
 <div className="carousel rounded-box flex items-center justify-around gap-4">

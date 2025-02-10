@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ResponsiveTabs() {
+function ResponsiveTabs(props) {
   const [activeTab, setActiveTab] = useState(1); // State to manage active tab
 
   const handleTabClick = (tabIndex) => {
@@ -12,7 +12,7 @@ function ResponsiveTabs() {
       {/* Tabs */}
       <div className="flex items-center justify-between">
         <button
-          className={`tab px-4 text-xs ${
+          className={`tab text-xs ${
             activeTab === 1
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
@@ -22,10 +22,10 @@ function ResponsiveTabs() {
           }} // Inline style for text color
           onClick={() => handleTabClick(1)}
         >
-          DAILY WEAR
+          {props.t1}
         </button>
         <button
-          className={`tab px-4 py-2 sm:py-3 text-xs ${
+          className={`tab text-xs ${
             activeTab === 2
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
@@ -35,10 +35,10 @@ function ResponsiveTabs() {
           }} // Inline style for text color
           onClick={() => handleTabClick(2)}
         >
-          FORMAL WEAR
+          {props.t2}
         </button>
         <button
-          className={`tab px-4 py-2 sm:py-3 text-xs ${
+          className={`tab text-xs ${
             activeTab === 3
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
@@ -48,7 +48,7 @@ function ResponsiveTabs() {
           }} // Inline style for text color
           onClick={() => handleTabClick(3)}
         >
-          PARTY WEAR
+          {props.t3}
         </button>
       </div>
 

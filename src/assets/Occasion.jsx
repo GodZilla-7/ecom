@@ -8,7 +8,7 @@ function Occasion(){
     
       <Heading Heading="Shop By Occasion"/>
       <Divider/>
-      <ResponsiveTabs/>
+      <ResponsiveTabs t1="DAILY WEAR" t2="OFFICE WEAR" t3="OCCASION WEAR"/>
         <div className="flex flex-col items-center justify-between">
       
 <div className="carousel rounded-box flex items-center justify-around gap-4">
