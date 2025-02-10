@@ -2,6 +2,7 @@ import React from "react";
 import Heading from "./Heading";
 import Divider from "./Divider";
 import ResponsiveTabs from "./Responsivetabs";
+import ProductCard from "./ProductCard";
 function Fabric(){
   return(
     <>
@@ -11,30 +12,23 @@ function Fabric(){
       <ResponsiveTabs t1="SOFT COTTON" t2="LINEN COTTON" t3="HANDLOOM COTTON"/>
         <div className="flex flex-col items-center justify-between">
       
-<div className="carousel rounded-box flex items-center justify-around gap-4">
- 
-  <div className="carousel-item">
-    <img className="rounded-box"
-      src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
-      alt="Burger" />
-  </div>
-  <div className="carousel-item">
-    <img className="rounded-box"
-      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-      alt="Burger" />
-  </div>
-  <div className="carousel-item">
-    <img className="rounded-box"
-      src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-      alt="Burger" />
-  </div>
-  <div className="carousel-item">
-    <img className="rounded-box"
-      src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
-      alt="Burger" />
-  </div>
-
-</div>
+<div className="carousel rounded-box flex items-center justify-around gap-4 overflow-x-scroll no-scrollbar w-full">
+          <div className="carousel-item">
+            <ProductCard img="/i1.webp" />
+          </div>
+          <div className="carousel-item">
+          <ProductCard img="/i2.webp" />
+          </div>
+          <div className="carousel-item">
+          <ProductCard img="/i3.webp" />
+          </div>
+          <div className="carousel-item">
+          <ProductCard img="/i4.webp" />
+          </div>
+          <div className="carousel-item">
+          <ProductCard img="/i1.webp" />
+          </div>
+        </div>
 <button className="btn mt-8 bg-white border-[rgb(95,15,42)] w-[80vw] py-6 rounded-lg text-[rgb(95,15,42)] font-normal">
 View All
 <svg fill="rgb(95, 15, 42)" height="10px" width="10px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
