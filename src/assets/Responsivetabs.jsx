@@ -8,11 +8,11 @@ function ResponsiveTabs() {
   };
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full mb-4 p-1">
       {/* Tabs */}
-      <div className="flex items-center justify-around">
+      <div className="flex items-center justify-between">
         <button
-          className={`tab px-4 py-2 sm:py-3 text-xs ${
+          className={`tab px-4 text-xs ${
             activeTab === 1
               ? "border-b-2 border-[rgb(139,69,19)]"
               : ""
@@ -53,7 +53,7 @@ function ResponsiveTabs() {
       </div>
 
       {/* Tab Panels */}
-      <div className="tab-content p-4 sm:p-6">
+      <div className="tab-content p-2">
         {activeTab === 1 && (
           <div>
             <h2 className="text-lg font-semibold mb-2">Daily Wear Content</h2>
