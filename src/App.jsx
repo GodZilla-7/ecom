@@ -23,7 +23,6 @@ let router = createBrowserRouter([
     path: "/orders",
     element:<div>
          <Orders/>
-          <Dock/>
         </div>
   },
 ]);

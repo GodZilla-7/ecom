@@ -54,9 +54,9 @@ function ProductCard(props) {
                 <p className="text-xs text-gray-500 mt-1">2Pc Set</p>
 
                 {/* Price Section */}
-                <div className="flex items-center justify-between mt-3">
+                <div className="flex items-center justify-between">
                     <div className="flex items-baseline">
-                        <span className="text-sm font-semibold text-gray-900">
+                        <span className="text-md font-semibold text-gray-900">
                             ₹1,248
                         </span>
                         <span className="text-xs line-through text-gray-400 ml-2">

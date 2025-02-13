@@ -1,15 +1,9 @@
 import React from "react";
-
+import Marqee from "./Marqee";
 function Navbar(){
     return(
       <div className="fixed top-0 left-0 z-50 w-full">
-      <div className="relative overflow-hidden bg-[rgb(95,15,42)] text-white">
-  <div className="flex justify-between animate-[marquee_10s_linear_infinite] whitespace-nowrap text-sm">
-    <span>Limited Time Offer!</span>
-    <span>FREE Pouch on first order above ₹999</span>
-  </div>
-</div>
-
+<Marqee/>
 
 <div className="navbar bg-base-100 shadow-sm ">
 
@@ -27,10 +21,17 @@ function Navbar(){
 
     
     <button className="btn btn-ghost btn-circle">
-      <div className="indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" /> </svg>
-        <span className="badge badge-xs badge-primary indicator-item"></span>
-      </div>
+
+       
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.001 4.529a6 6 0 0 1 8.242.228 6 6 0 0 1 .236 8.236l-8.48 8.492-8.478-8.492a6 6 0 0 1 8.48-8.464m6.826 1.641a4 4 0 0 0-5.49-.153l-1.335 1.198-1.336-1.197a4 4 0 0 0-5.686 5.605L12 18.654l7.02-7.03a4 4 0 0 0-.193-5.454"></path></svg>
+     
+
+    </button>
+    <button className="btn btn-ghost btn-circle">
+
+       
+    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="transparent" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.997 11.125v-5a3 3 0 1 1 6 0v5m-8.669-3h11.34a2 2 0 0 1 1.976 2.304l-1.255 8.152a3 3 0 0 1-2.966 2.544H8.571a3 3 0 0 1-2.965-2.544l-1.255-8.152a2 2 0 0 1 1.977-2.304"></path></svg>
+
     </button>
   
   

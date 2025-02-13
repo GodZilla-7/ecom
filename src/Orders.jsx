@@ -1,8 +1,12 @@
 import React from 'react'
 
+import Productpage from './assets/Productpage'
 function Orders() {
   return (
-    <div>Hello From Orders Page</div>
+    <>
+
+    <Productpage/>
+    </>
   )
 }
 
