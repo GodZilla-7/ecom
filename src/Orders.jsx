@@ -4,7 +4,6 @@ import Productpage from './assets/Productpage'
 function Orders() {
   return (
     <>
-
     <Productpage/>
     </>
   )

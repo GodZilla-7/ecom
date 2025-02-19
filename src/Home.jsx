@@ -20,10 +20,9 @@ function Home() {
     <Fabric/>
     <Why/>
     <Bestsellers/>
-    <Printtype img="/p1.webp"/>
-    <Printtype img="/p2.webp"/>
-    <Printtype img="/p3.webp"/>
-
+    <Printtype print="Solid" img="/p1.webp"/>
+    <Printtype print="Floral" img="/p2.webp"/>
+    <Printtype print="Indie" img="/p3.webp"/>
     <FAQ/>
 
   </>
