@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
 
-function ProductCard({ img, title, description, price, compareAtPrice }) {
+const ProductCard = memo(({ img, title, price, compareAtPrice }) => {
   const [isLiked, setIsLiked] = useState(false);
+
 
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
@@ -12,11 +13,13 @@ function ProductCard({ img, title, description, price, compareAtPrice }) {
     <div className="card ml-4 w-64 bg-white rounded-xl border border-gray-200">
       {/* Product Image */}
       <div className="h-80 overflow-hidden relative rounded-xl">
-        <img
-          src={img || "/i1.webp"} // Fallback image
+       <img
+          src={img || "/i1.webp"}
           alt={title}
           className="object-cover w-full h-full"
+          loading="lazy"
         />
+
 
         {/* Rating Badge */}
         <div className="absolute bottom-3 left-3 bg-white px-2 py-1 rounded-2xl flex items-center gap-1 shadow-md">
@@ -81,6 +84,7 @@ function ProductCard({ img, title, description, price, compareAtPrice }) {
       </div>
     </div>
   );
-}
+});
+
 
 export default ProductCard;
