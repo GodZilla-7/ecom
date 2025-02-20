@@ -28,7 +28,6 @@ function Printtype(props) {
               <ProductCard
                 img={product.images[0]?.src || "/i1.webp"}
                 title={product.title}
-                description={product.body_html.replace(/<[^>]*>/g, "").substring(0, 50) + "..."}
                 price={product.variants[0]?.price || "N/A"}
                 compareAtPrice={product.variants[0]?.compare_at_price}
               />
