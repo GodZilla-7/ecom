@@ -7,15 +7,12 @@ import { Pagination } from 'swiper/modules';
 import Marqee from './Marqee';
 import Sizeselector from './Sizeselector';
 import Buybar from './Buybar';
-import ProductCard from './ProductCard';
 import Why from './Why';
-import Heading from './Heading';
-import Divider from './Divider';
 import Bestsellers from './Bestsellers';
 import Details from './Details';
 
 const Productpage = () => {
-    const { productId } = useParams(); // Extract productId from URL
+    const { productId } = useParams();
     const navigate = useNavigate();
     const [selectedSize, setSelectedSize] = useState("");
     const [isLiked, setIsLiked] = useState(false);
