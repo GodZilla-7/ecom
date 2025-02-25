@@ -26,6 +26,7 @@ function Printtype(props) {
           products.slice(0, 5).map((product) => (
             <div className="carousel-item" key={product.id}>
               <ProductCard
+                          id={product.id}
                 img={product.images[0]?.src || "/i1.webp"}
                 title={product.title}
                 price={product.variants[0]?.price || "N/A"}
@@ -34,7 +35,32 @@ function Printtype(props) {
             </div>
           ))
         ) : (
-          <p className="text-gray-500">No products found for "{print}".</p>
+          <>
+          <div className="flex w-52 flex-col gap-4">
+            <div className="skeleton h-44 w-full"></div>
+            <div className="skeleton h-6 w-28"></div>
+            <div className="skeleton h-6 w-full"></div>
+            <div className="skeleton h-6 w-full"></div>
+          </div>
+          <div className="flex w-52 flex-col gap-4">
+            <div className="skeleton h-44 w-full"></div>
+            <div className="skeleton h-6 w-28"></div>
+            <div className="skeleton h-6 w-full"></div>
+            <div className="skeleton h-6 w-full"></div>
+          </div>
+          <div className="flex w-52 flex-col gap-4">
+            <div className="skeleton h-44 w-full"></div>
+            <div className="skeleton h-6 w-28"></div>
+            <div className="skeleton h-6 w-full"></div>
+            <div className="skeleton h-6 w-full"></div>
+          </div>
+          <div className="flex w-52 flex-col gap-4">
+            <div className="skeleton h-44 w-full"></div>
+            <div className="skeleton h-6 w-28"></div>
+            <div className="skeleton h-6 w-full"></div>
+            <div className="skeleton h-6 w-full"></div>
+          </div>
+          </>
         )}
       </div>
       <button className="btn mt-8 bg-white border-[rgb(95,15,42)] w-[80vw] py-6 rounded-lg text-[rgb(95,15,42)] font-normal">

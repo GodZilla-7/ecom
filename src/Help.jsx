@@ -1,8 +1,13 @@
 import React from 'react'
 import FAQ from './assets/Faq'
 import Marqee from './assets/Marqee'
+
 function Help() {
+      React.useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
   return (
+
     <>
     <Marqee/>
     <div className="flex flex-col items-center justify-center px-4">
@@ -44,7 +49,9 @@ function Help() {
         </button>
       </div>
     </div>
-     <FAQ/>
+
+  <FAQ />
+
     </>
   )
 }

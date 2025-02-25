@@ -56,6 +56,7 @@ function Occasion() {
             filteredProducts.map((product) => (
               <div className="carousel-item" key={product.id}>
                 <ProductCard
+                id={product.id}
                   img={product.images[0]?.src || "/placeholder.jpg"}
                   title={product.title}
                   description={product.product_type}
@@ -65,7 +66,32 @@ function Occasion() {
               </div>
             ))
           ) : (
-            <span className="loading loading-spinner my-24 loading-xl"></span>
+            <>
+            <div className="flex w-52 flex-col gap-4">
+              <div className="skeleton h-44 w-full"></div>
+              <div className="skeleton h-6 w-28"></div>
+              <div className="skeleton h-6 w-full"></div>
+              <div className="skeleton h-6 w-full"></div>
+            </div>
+            <div className="flex w-52 flex-col gap-4">
+              <div className="skeleton h-44 w-full"></div>
+              <div className="skeleton h-6 w-28"></div>
+              <div className="skeleton h-6 w-full"></div>
+              <div className="skeleton h-6 w-full"></div>
+            </div>
+            <div className="flex w-52 flex-col gap-4">
+              <div className="skeleton h-44 w-full"></div>
+              <div className="skeleton h-6 w-28"></div>
+              <div className="skeleton h-6 w-full"></div>
+              <div className="skeleton h-6 w-full"></div>
+            </div>
+            <div className="flex w-52 flex-col gap-4">
+              <div className="skeleton h-44 w-full"></div>
+              <div className="skeleton h-6 w-28"></div>
+              <div className="skeleton h-6 w-full"></div>
+              <div className="skeleton h-6 w-full"></div>
+            </div>
+            </>
           )}
         </div>
 

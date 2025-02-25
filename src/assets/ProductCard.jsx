@@ -1,25 +1,33 @@
 import React, { useState, memo } from "react";
+import { useNavigate } from "react-router-dom";
 
-const ProductCard = memo(({ img, title, price, compareAtPrice }) => {
+const ProductCard = memo(({ id, img, title, price, compareAtPrice }) => {
+  const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
+  const handleCardClick = () => {
+    // Navigate to product page with only the product ID
+    navigate(`/product/${id}`);
+  };
 
-  const handleLikeClick = () => {
+  const handleLikeClick = (e) => {
+    e.stopPropagation(); // Prevent triggering navigation on like button click
     setIsLiked(!isLiked);
   };
 
   return (
-
-    <div className="card ml-4 w-64 bg-white rounded-xl border border-gray-200">
+    <div
+      className="card ml-4 w-64 bg-white rounded-xl border border-gray-200 cursor-pointer"
+      onClick={handleCardClick} // Redirect on click
+    >
       {/* Product Image */}
       <div className="h-80 overflow-hidden relative rounded-xl">
-       <img
+        <img
           src={img || "/i1.webp"}
           alt={title}
           className="object-cover w-full h-full"
           loading="lazy"
         />
-
 
         {/* Rating Badge */}
         <div className="absolute bottom-3 left-3 bg-white px-2 py-1 rounded-2xl flex items-center gap-1 shadow-md">
@@ -38,25 +46,19 @@ const ProductCard = memo(({ img, title, price, compareAtPrice }) => {
 
       {/* Card Body */}
       <div className="p-3">
-      <h2 className="text-xs font-medium mt-2 truncate w-full">{title}</h2>
-
+        <h2 className="text-xs font-medium mt-2 truncate w-full">{title}</h2>
 
         {/* Price Section */}
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-baseline">
-            <span className="text-md font-semibold text-gray-900">
-              ₹{price}
-            </span>
+            <span className="text-md font-semibold text-gray-900">₹{price}</span>
             {compareAtPrice && (
               <>
                 <span className="text-xs line-through text-gray-400 ml-2">
                   ₹{compareAtPrice}
                 </span>
                 <span className="text-xs text-green-500 ml-2">
-                  -{Math.round(
-                    ((compareAtPrice - price) / compareAtPrice) * 100
-                  )}
-                  %
+                  -{Math.round(((compareAtPrice - price) / compareAtPrice) * 100)}%
                 </span>
               </>
             )}
@@ -85,6 +87,5 @@ const ProductCard = memo(({ img, title, price, compareAtPrice }) => {
     </div>
   );
 });
-
 
 export default ProductCard;
