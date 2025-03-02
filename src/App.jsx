@@ -1,47 +1,35 @@
 import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Home";
 import Dock from "./assets/Dock";
-import Help from "./Help";
+import ProductPage from "./assets/Productpage";
 import Orders from "./Orders";
-import Productpage from "./assets/Productpage";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Help from "./Help";
+import AddressForm from "./checkout/AddressForm";
+import PaymentForm from "./checkout/PaymentForm";
+import OrderSummary from "./checkout/OrderSummary";
+import Confirmation from "./checkout/Confirmation";
+import { CheckoutProvider } from "./checkout/CheckoutContext";
 
-let router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <div>
-        <Home />
-        <Dock />
-      </div>
-    ),
-  },
-  {
-    path: "/help",
-    element: (
-      <div>
-        <Help />
-        <Dock />
-      </div>
-    ),
-  },
-  {
-    path: "/orders",
-     element: (
-          <div>
-            <Orders />
-            <Dock />
-          </div>
-        ),
-  },
-  {
-    path: "/product/:productId",
-    element: <Productpage />,
-  },
+const router = createBrowserRouter([
+  { path: "/", element: <><Home /><Dock /></> },
+  { path: "/help", element: <><Help /><Dock /></> },
+  { path: "/orders", element: <><Orders /><Dock /></> },
+  { path: "/product/:productId", element: <ProductPage /> },
+
+  // Checkout Routes
+  { path: "/checkout/:productId/address", element: <AddressForm /> },
+  { path: "/checkout/:productId/payment", element: <PaymentForm /> },
+  { path: "/checkout/:productId/summary", element: <OrderSummary /> },
+  { path: "/checkout/confirmation", element: <Confirmation /> },
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <CheckoutProvider>
+      <RouterProvider router={router} />
+    </CheckoutProvider>
+  );
 }
 
 export default App;

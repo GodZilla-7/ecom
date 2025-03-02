@@ -193,9 +193,9 @@ const Productpage = () => {
                 <Sizeselector />
                 <Details />
                 <Why />
-                <Bestsellers  />
+                <Bestsellers/>
             </div>
-            <Buybar/>
+            <Buybar id={productId}  />
         </>
     );
 };

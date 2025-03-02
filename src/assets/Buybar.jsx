@@ -1,11 +1,13 @@
 import React from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 
-function Buybar() {
+function Buybar(props) {
+  const navigate = useNavigate();
   return (
     <>
       <div className="flex fixed bottom-0 left-0 gap-4 w-full items-center justify-around bg-white p-3 z-50">
         {/* Add to Bag Button */}
-        <button className="w-1/2 h-12 flex justify-center items-center gap-2 bg-[rgb(95,15,42)] text-white px-6 py-2 rounded-lg font-light text-lg hover:opacity-80 transition">
+        <button className="w-1/2 h-12 flex justify-center items-center gap-2 bg-[rgb(95,15,42)] text-white px-6 py-2 rounded-lg font-light text-sm hover:opacity-80 transition">
           <svg
             height="20px"
             width="20px"
@@ -19,7 +21,7 @@ function Buybar() {
         </button>
 
         {/* Buy Now Button */}
-        <button className="w-1/2 h-12 flex justify-center items-center gap-2 border-2 border-[rgb(95,15,42)] text-[rgb(95,15,42)] px-6 py-2 rounded-lg font-light text-lg hover:bg-[rgb(242,235,244)] transition">
+        <button className="w-1/2 h-12 flex justify-center items-center gap-2 border-2 border-[rgb(95,15,42)] text-[rgb(95,15,42)] px-6 py-2 rounded-lg font-light text-sm hover:bg-[rgb(242,235,244)] transition" onClick={() => navigate(`/checkout/${props.id}/address`)}>
           <svg
             height="20px"
             width="20px"
