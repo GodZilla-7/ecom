@@ -9,13 +9,15 @@ import AddressForm from "./checkout/AddressForm";
 import PaymentForm from "./checkout/PaymentForm";
 import OrderSummary from "./checkout/OrderSummary";
 import Confirmation from "./checkout/Confirmation";
+import WishlistPage from "./Wishlist";
 import { CheckoutProvider } from "./checkout/CheckoutContext";
-
+import { Toaster } from "react-hot-toast";
 const router = createBrowserRouter([
   { path: "/", element: <><Home /><Dock /></> },
   { path: "/help", element: <><Help /><Dock /></> },
   { path: "/orders", element: <><Orders /><Dock /></> },
   { path: "/product/:productId", element: <ProductPage /> },
+  { path: "/wishes", element: <WishlistPage /> },
 
   // Checkout Routes
   { path: "/checkout/:productId/address", element: <AddressForm /> },
@@ -26,9 +28,15 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    <>
+    <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
     <CheckoutProvider>
       <RouterProvider router={router} />
     </CheckoutProvider>
+    </>
   );
 }
 

@@ -1,26 +1,69 @@
-import React, { useState, memo } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import toast from "react-hot-toast";
 
 const ProductCard = memo(({ id, img, title, price, compareAtPrice }) => {
   const navigate = useNavigate();
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleCardClick = () => {
-    // Navigate to product page with only the product ID
-    navigate(`/product/${id}`);
+  const { user, isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      const encodedUserId = encodeURIComponent(user.sub);
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/wishlist/${encodedUserId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.items) {
+            const found = data.items.some(
+              (item) => String(item.productId).trim() === String(id).trim()
+            );
+            setIsLiked(found);
+          }
+        })
+        .catch((error) => console.error("Error fetching wishlist:", error));
+    }
+  }, [user, isAuthenticated, id]);
+
+  const handleLikeClick = async (e) => {
+    e.stopPropagation();
+    if (!isAuthenticated || !user) {
+      toast.error("Please log in to manage your wishlist.");
+      return;
+    }
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/wishlist`, {
+        method: isLiked ? "DELETE" : "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          userId: user.sub,
+          productId: id,
+        }),
+      });
+
+      const data = await response.json();
+      if (response.ok) {
+        setIsLiked((prev) => !prev);
+        toast.success(isLiked ? "Removed from wishlist" : "Added to wishlist");
+      } else {
+        toast.error("Failed to update wishlist.");
+      }
+    } catch (error) {
+      toast.error("Error updating wishlist.");
+    }
   };
 
-  const handleLikeClick = (e) => {
-    e.stopPropagation(); // Prevent triggering navigation on like button click
-    setIsLiked(!isLiked);
+  const handleCardClick = () => {
+    navigate(`/product/${id}`);
   };
 
   return (
     <div
-      className="card ml-4 w-64 bg-white rounded-xl border border-gray-200 cursor-pointer"
-      onClick={handleCardClick} // Redirect on click
+      className="card ml-4 w-64 bg-white rounded-xl border border-gray-200 cursor-pointer z-100"
+      onClick={handleCardClick}
     >
-      {/* Product Image */}
       <div className="h-80 overflow-hidden relative rounded-xl">
         <img
           src={img || "/i1.webp"}
@@ -28,27 +71,10 @@ const ProductCard = memo(({ id, img, title, price, compareAtPrice }) => {
           className="object-cover w-full h-full"
           loading="lazy"
         />
-
-        {/* Rating Badge */}
-        <div className="absolute bottom-3 left-3 bg-white px-2 py-1 rounded-2xl flex items-center gap-1 shadow-md">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            className="w-4 h-4 text-green-500"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 .288l2.833 8.718h9.167l-7.416 5.386 2.833 8.718-7.417-5.387-7.417 5.387 2.833-8.718-7.416-5.386h9.167z" />
-          </svg>
-          <span className="text-xs font-semibold text-gray-800">4.7</span>
-          <span className="text-xs text-gray-400">(6.3K)</span>
-        </div>
       </div>
 
-      {/* Card Body */}
       <div className="p-3">
         <h2 className="text-xs font-medium mt-2 truncate w-full">{title}</h2>
-
-        {/* Price Section */}
         <div className="flex items-center justify-between mt-2">
           <div className="flex items-baseline">
             <span className="text-md font-semibold text-gray-900">₹{price}</span>

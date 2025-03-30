@@ -10,74 +10,154 @@ import Buybar from './Buybar';
 import Why from './Why';
 import Bestsellers from './Bestsellers';
 import Details from './Details';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Productpage = () => {
-    const { productId } = useParams();
-    const navigate = useNavigate();
-    const [selectedSize, setSelectedSize] = useState("");
-    const [isLiked, setIsLiked] = useState(false);
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const { productId } = useParams();
+  const navigate = useNavigate();
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  
+  // States for wishlist like and product data
+  const [selectedSize, setSelectedSize] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    useEffect(() => {
-        setProduct(null);
+  // Fetch product data from Shopify JSON API
+  useEffect(() => {
+    setProduct(null);
     setLoading(true);
     setError(null);
-        if (!productId) {
-            setError('Product ID is missing');
-            setLoading(false);
-            return;
+    if (!productId) {
+      setError('Product ID is missing');
+      setLoading(false);
+      return;
+    }
+
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(
+          `https://kalira-store.myshopify.com/products.json?limit=100`
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch products');
+        }
+        const data = await response.json();
+        // Find the product with the matching ID.
+        // Note: productId from URL params might be a string; if needed, convert appropriately.
+        const foundProduct = data.products.find(
+          (p) => p.id === Number(productId)
+        );
+
+        if (!foundProduct) {
+          throw new Error('Product not found');
         }
 
-      
-        const fetchProduct = async () => {
-            try {
-                const response = await fetch(
-                    `https://kalira-store.myshopify.com/products.json?limit=100`
-                );
-                if (!response.ok) {
-                    throw new Error('Failed to fetch products');
-                }
-                const data = await response.json();
-
-                // Find the product with the matching ID
-                const foundProduct = data.products.find(
-                    (p) => p.id === Number(productId)
-                );
-
-                if (!foundProduct) {
-                    throw new Error('Product not found');
-                }
-
-                setProduct(foundProduct);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProduct();
-    }, [productId]);
-
-    const handleLikeClick = () => {
-        setIsLiked(!isLiked);
+        setProduct(foundProduct);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    if (loading) {
-        return <div className="flex justify-center items-center h-screen">
-            <span className="loading loading-spinner loading-xl"></span>
-        </div>;
+    fetchProduct();
+  }, [productId]);
+
+  // Fetch wishlist data to determine if the product is liked
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      // Encode user.sub in case of special characters
+      const encodedUserId = encodeURIComponent(user.sub);
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/wishlist/${encodedUserId}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Fetched wishlist data:", data);
+          console.log("Current product ID:", productId);
+          if (data.items) {
+            // Compare product IDs as strings
+            const found = data.items.some(
+              (item) => String(item.productId).trim() === String(productId).trim()
+            );
+            console.log("Comparison:", data.items.map(item => String(item.productId).trim()), "vs", String(productId).trim());
+            console.log("found?", found);
+            setIsLiked(found);
+          }
+        })
+        .catch((error) => console.error("Error fetching wishlist:", error));
+    }
+  }, [user, isAuthenticated, productId]);
+
+  // Handle wishlist like toggle
+  const handleLikeClick = async (e) => {
+    e.stopPropagation();
+    if (!isAuthenticated || !user) {
+        console.error("User not authenticated");
+        return;
     }
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+    try {
+        if (isLiked) {
+            // Remove from wishlist
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/wishlist`, {
+                method: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userId: user.sub,
+                    productId: productId,
+                }),
+            });
 
-    if (!product) {
-        return <div>No product data available.</div>;
+            if (response.ok) {
+                setIsLiked(false);
+                console.log("Product removed from wishlist");
+            } else {
+                console.error("Failed to remove from wishlist");
+            }
+        } else {
+            // Add to wishlist
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/wishlist`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    userId: user.sub,
+                    productId: productId,
+                }),
+            });
+
+            if (response.ok) {
+                setIsLiked(true);
+                console.log("Product added to wishlist");
+            } else {
+                console.error("Failed to add to wishlist");
+            }
+        }
+    } catch (error) {
+        console.error("Error updating wishlist:", error);
     }
+};
+
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <span className="loading loading-spinner loading-xl"></span>
+      </div>
+    );
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!product) {
+    return <div>No product data available.</div>;
+  }
 
     return (
         <>
@@ -99,11 +179,13 @@ const Productpage = () => {
                         ShopBraze
                     </div>
                     <div>
-                        <button className="btn btn-ghost btn-circle" onClick={handleLikeClick}>
+                      <a href='/wishes'>
+                        <button className="btn btn-ghost btn-circle">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill={isLiked ? "red" : "currentColor"} viewBox="0 0 24 24">
                                 <path d="M12.001 4.529a6 6 0 0 1 8.242.228 6 6 0 0 1 .236 8.236l-8.48 8.492-8.478-8.492a6 6 0 0 1 8.48-8.464m6.826 1.641a4 4 0 0 0-5.49-.153l-1.335 1.198-1.336-1.197a4 4 0 0 0-5.686 5.605L12 18.654l7.02-7.03a4 4 0 0 0-.193-5.454"></path>
                             </svg>
                         </button>
+                        </a>
                         <button className="btn btn-ghost btn-circle">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="transparent" viewBox="0 0 24 24">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8.997 11.125v-5a3 3 0 1 1 6 0v5m-8.669-3h11.34a2 2 0 0 1 1.976 2.304l-1.255 8.152a3 3 0 0 1-2.966 2.544H8.571a3 3 0 0 1-2.965-2.544l-1.255-8.152a2 2 0 0 1 1.977-2.304"></path>

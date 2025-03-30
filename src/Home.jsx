@@ -16,9 +16,9 @@ function Home() {
     <Navbar/>
     <Hero/>
     <Catagory/>
-    <Occasion/>
+   <Occasion/>
     <Fabric/>
-    <Why/>
+    <Why/> 
     <Bestsellers/>
     <Printtype print="Solid" img="/p1.webp"/>
     <Printtype print="Floral" img="/p2.webp"/>
