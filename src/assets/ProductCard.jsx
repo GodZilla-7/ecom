@@ -61,7 +61,7 @@ const ProductCard = memo(({ id, img, title, price, compareAtPrice }) => {
 
   return (
     <div
-      className="card ml-4 w-64 bg-white rounded-xl border border-gray-200 cursor-pointer z-100"
+      className="card ml-4 w-64 bg-white rounded-xl border border-gray-200 cursor-pointer z-10"
       onClick={handleCardClick}
     >
       <div className="h-80 overflow-hidden relative rounded-xl">
