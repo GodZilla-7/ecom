@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 function Dock() {
   return (
-    <div className="dock p-1">
+    <div className="dock p-1 z-20">
       {/* Home Button */}
       <NavLink
         to="/"
